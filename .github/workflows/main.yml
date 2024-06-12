@@ -70,11 +70,8 @@ jobs:
           host: ${{ secrets.SSH_HOST }}
           username: ${{ secrets.SSH_USER }}
           key: ${{ secrets.SSH_KEY }}
-          envs:
-            DOCKER_HUB_USERNAME: ${{ secrets.DOCKER_HUB_USERNAME }}
-            TAG: ${{ env.TAG }}
           script: |
-            docker pull $DOCKER_HUB_USERNAME/githubcicd:$TAG
+            docker pull ${{ secrets.DOCKER_HUB_USERNAME }}/githubcicd:${{ env.TAG }}
             docker stop mycontainer || true
             docker rm mycontainer || true
-            docker run -d --name mycontainer -p 80:80 $DOCKER_HUB_USERNAME/githubcicd:$TAG
+            docker run -d --name mycontainer -p 80:80 ${{ secrets.DOCKER_HUB_USERNAME }}/githubcicd:${{ env.TAG }}
