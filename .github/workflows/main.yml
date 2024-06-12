@@ -69,7 +69,7 @@ jobs:
         with:
           host: ${{ secrets.SSH_HOST }}
           username: ${{ secrets.SSH_USER }}
-          key: ${{ secrets.SSH_KEY }}
+          key: ${{ secrets.SSH_PRIVATE_KEY}}
           script: |
             docker pull ${{ secrets.DOCKER_HUB_USERNAME }}/githubcicd:${{ env.TAG }}
             docker run -d --name mycontainer -p 80:80 ${{ secrets.DOCKER_HUB_USERNAME }}/githubcicd:${{ env.TAG }}
