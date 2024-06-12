@@ -72,8 +72,8 @@ jobs:
           key: ${{ secrets.SSH_KEY }}
           script: |
             docker pull ${{ secrets.DOCKER_HUB_USERNAME }}/githubcicd:${{ env.TAG }}
-            docker stop mycontainer || true
-            docker rm mycontainer || true
+#            docker stop mycontainer || true
+#            docker rm mycontainer || true
             docker run -d --name mycontainer -p 80:80 ${{ secrets.DOCKER_HUB_USERNAME }}/githubcicd:${{ env.TAG }}
         env:
           DEBUG: true
